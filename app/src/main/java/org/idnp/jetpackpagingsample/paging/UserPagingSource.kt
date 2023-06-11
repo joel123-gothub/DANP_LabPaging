@@ -2,23 +2,23 @@ package org.idnp.jetpackpagingsample.paging
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import org.idnp.jetpackpagingsample.entities.User
-import org.idnp.jetpackpagingsample.model.UserRepository
+import org.idnp.jetpackpagingsample.entities.Country
+import org.idnp.jetpackpagingsample.model.UserRepositoryRoom
 import java.io.IOException
 
 class UserPagingSource(
-    private val userRepository: UserRepository
-) : PagingSource<Int, User>() {
+    private val userRepository: UserRepositoryRoom
+) : PagingSource<Int, Country>() {
 
     override val keyReuseSupported: Boolean = true
 
-    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, User> {
+    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Country> {
         return try {
             val nextPageNumber = params.key ?: 1
-            val users = userRepository.getUsers(nextPageNumber)
+            val countries = userRepository.getCountries(nextPageNumber, nextPageNumber + 20)
 
             return LoadResult.Page(
-                data = users ?: listOf(),
+                data = countries ?: listOf(),
                 prevKey = if (nextPageNumber > 1) nextPageNumber - 1 else 1,
                 nextKey = nextPageNumber + 1
             )
@@ -28,7 +28,7 @@ class UserPagingSource(
         }
     }
 
-    override fun getRefreshKey(state: PagingState<Int, User>): Int? {
+    override fun getRefreshKey(state: PagingState<Int, Country>): Int? {
 
         return state.anchorPosition?.let { anchorPosition ->
             val anchorPage = state.closestPageToPosition(anchorPosition)

@@ -8,9 +8,9 @@ import org.idnp.jetpackpagingsample.entities.User
 
 class UserViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
-    private val cuiText = view.findViewById<TextView>(R.id.textViewCui) as TextView
-    private val firstNameText = view.findViewById<TextView>(R.id.textViewFirstName) as TextView
-    private val secondNameText = view.findViewById<TextView>(R.id.textViewSecondName) as TextView
+    private val cuiText = view.findViewById<TextView>(R.id.textViewName) as TextView
+    private val firstNameText = view.findViewById<TextView>(R.id.textViewContinent) as TextView
+    private val secondNameText = view.findViewById<TextView>(R.id.textViewCapital) as TextView
 
     fun bind(user: User) {
         with(user) {

@@ -1,9 +1,11 @@
 package org.idnp.jetpackpagingsample.model
 
 import android.util.Log
+import org.idnp.jetpackpagingsample.entities.Country
 import org.idnp.jetpackpagingsample.entities.User
 
 class UserRepository {
+
     fun getUsers(nextPageNumber: Int): List<User> {
 
         Log.d("nextPageNumber:",nextPageNumber.toString())
